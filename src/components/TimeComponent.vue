@@ -4,12 +4,15 @@
             <h1 class="display-5 fw-bold m-0">{{ timeNow }}</h1>
             <h1 class="fs-4 m-0">{{ dateNow }}</h1>
         </div>
-        <div class="status p1 text-center text-dark">
-            <div v-if="status">
-                <span> <i class="bi bi-wifi fs-3 "></i><br>ON</span>
+        <div class="text-center text-dark">
+            <div v-if="status" class="status p-1">
+                <span> <i class="bi bi-wifi fs-3"></i><br />ON</span>
             </div>
-            <div v-else>
-                <span><i class="bi bi-wifi-off fs-3 text-danger"></i><br>OFF</span>
+            <div v-else class="status p-1">
+                <span
+                    ><i class="bi bi-wifi-off fs-3 text-danger"></i
+                    ><br />OFF</span
+                >
             </div>
         </div>
     </div>
@@ -17,14 +20,13 @@
 
 <style>
 .status {
-    width: 40px;
-    color: #212529;
+    width: 40px !important;
     background-color: white;
     border-radius: 8px;
 }
 </style>
 <script setup>
-import { ref, } from 'vue';
+import { ref } from "vue";
 
 const timeNow = ref();
 const dateNow = ref();
@@ -45,7 +47,7 @@ const time = () => {
 
     timeNow.value = jam;
     dateNow.value = hari;
-}
+};
 time();
 
 const check = () => {
@@ -57,5 +59,5 @@ const check = () => {
         status.value = false;
     });
 };
-check()
+check();
 </script>
