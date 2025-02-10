@@ -64,9 +64,10 @@ const data = ref([]);
 const errorText = ref();
 
 const axiosDefaultHeader = () => {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${
-        localStore.loadLocal().access_token
-    }`;
+    axios.defaults.headers.common["Authorization"] 
+    = `Bearer ${localStore.loadLocal().access_token}`;
+    axios.defaults.headers.get['version'] 
+    = '1.1.0'; //ini untuk post
 };
 
 const getData = () => {
@@ -79,16 +80,17 @@ const getData = () => {
         )
         .then((result) => {
             data.value = result.data.data;
-            // console.log(data.value);
         })
         .catch((error) => {
             if (error.response.status == 404) {
                 // data.value = [];
                 errorText.value = "Tidak ada data";
-            } else {
-                errorText.value = "Server bermasalah";
+            }else if(error.response.status == 426){
+                errorText.value = error.response.data.pesan;
+            }else{
+                errorText.value = error.response.data.message;
             }
-            // console.log(error.response);
+            console.log(error.response)
         })
         .finally(() => {
             loading.value = false;

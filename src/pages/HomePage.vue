@@ -181,9 +181,10 @@ const isWithinRadius = (centerPoint, userLocation, radius) => {
 };
 
 const axiosDefaultHeader = () => {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${
-        localStore.loadLocal().access_token
-    }`;
+    axios.defaults.headers.common["Authorization"] 
+    =`Bearer ${localStore.loadLocal().access_token}`;
+    axios.defaults.headers.post['version'] 
+    = '1.1.0'; //ini unutk post
 };
 
 const postData = () => {

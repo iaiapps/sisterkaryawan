@@ -151,9 +151,10 @@ const login = async () => {
             authStore.login(email.value, response.data.access_token);
             localStore.saveLocal(response.data);
             toHome();
+            console.log(response.data)
         }
     } catch (error) {
-        console.log(error.response);
+        console.log(error);
         failed.value = error.response.status;
         errorCheck();
     }
